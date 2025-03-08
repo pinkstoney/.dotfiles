@@ -1,6 +1,6 @@
 ![ZSH](https://img.shields.io/badge/Shell-ZSH-4EAA25?logo=gnu-bash&logoColor=white)
 ![Neovim](https://img.shields.io/badge/Editor-Neovim-57A143?logo=neovim&logoColor=white)
-![Tmux](https://img.shields.io/badge/Terminal-Tmux-1BB91F?logo=tmux&logoColor=white)
+![Tmux](https://img.shields.io/badge/Multiplexer-Tmux-1BB91F?logo=tmux&logoColor=white)
 ![Kitty](https://img.shields.io/badge/Terminal-Kitty-784421?logo=kitty&logoColor=white)
 
 
@@ -58,6 +58,7 @@ SKIP_TMUX_CHECKS=1 ./verify_installation.sh
 | [Zoxide](https://github.com/ajeetdsouza/zoxide) | Smarter directory navigation |
 | [fzf](https://github.com/junegunn/fzf) | Command-line fuzzy finder |
 | [TheFuck](https://github.com/nvbn/thefuck) | Corrects your previous console command |
+| [Yazi](https://github.com/sxyazi/yazi) | Fast terminal file manager with preview support |
 
 ### Plugins
 

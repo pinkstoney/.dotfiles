@@ -684,6 +684,59 @@ install_hack_nerd_font() {
     esac
 }
 
+# Install Yazi (terminal file manager)
+install_yazi() {
+    print_header "Installing Yazi"
+    log "Installing Yazi"
+    
+    if ! command_exists yazi; then
+        case "$OS" in
+            "macos")
+                brew install yazi
+                ;;
+            "debian")
+                print_info "Installing Yazi dependencies..."
+                sudo apt-get install -y gcc libfuse-dev pkg-config fuse
+                
+                print_info "Checking if Cargo is installed..."
+                if ! command_exists cargo; then
+                    print_info "Installing Rust and Cargo..."
+                    log "Installing Rust and Cargo"
+                    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+                    source "$HOME/.cargo/env"
+                fi
+                
+                print_info "Installing Yazi using Cargo..."
+                log "Installing Yazi using Cargo"
+                cargo install --locked yazi-fm
+                ;;
+            "fedora")
+                sudo dnf install -y yazi
+                ;;
+            "arch")
+                sudo pacman -S --noconfirm yazi
+                ;;
+            *)
+                print_warning "Could not automatically install Yazi for your OS."
+                print_warning "Please install Yazi manually: https://github.com/sxyazi/yazi"
+                log "WARNING: Could not install Yazi automatically on $OS"
+                ;;
+        esac
+        
+        # Verify yazi installation
+        if command_exists yazi; then
+            print_success "Yazi installed successfully."
+            log "Successfully installed Yazi"
+        else
+            print_warning "Yazi installation may have failed. Please check manually."
+            log "WARNING: Yazi not found after installation attempt"
+        fi
+    else
+        print_success "Yazi is already installed."
+        log "Yazi already installed"
+    fi
+}
+
 # Install Oh My Zsh and plugins
 install_oh_my_zsh() {
     print_header "Setting up Oh My Zsh"
@@ -939,6 +992,7 @@ install_zoxide
 install_fzf
 install_thefuck
 install_hack_nerd_font
+install_yazi
 install_oh_my_zsh
 setup_neovim
 setup_kitty

@@ -245,7 +245,7 @@ check_tool() {
 check_core_tools() {
     print_header "Checking Core Tools"
     
-    local tools=("Neovim:nvim" "Kitty:kitty" "Ruby:ruby" "Colorls:colorls" "Zoxide:zoxide" "TheFuck:thefuck" "Fuzzy Finder:fzf")
+    local tools=("Neovim:nvim" "Kitty:kitty" "Ruby:ruby" "Colorls:colorls" "Zoxide:zoxide" "TheFuck:thefuck" "Fuzzy Finder:fzf" "Yazi:yazi")
     
     # Only add tmux to the tools list if we're not skipping tmux checks
     if [ -z "$SKIP_TMUX_CHECKS" ]; then
@@ -501,24 +501,6 @@ print_summary() {
 # =============================================================================
 
 main() {
-    # Check for Docker environment and PATH issues
-    if [[ $PATH != *"$HOME/.local/bin"* ]] && [ -f "$HOME/.dotfiles/docker_path_fix.sh" ]; then
-        print_header "Docker Environment Detected with PATH Issues"
-        print_error "Warning: Your PATH doesn't include user directories."
-        echo "This is common in Docker environments."
-        echo ""
-        echo "To fix this, run:"
-        echo "  1. ${GREEN}source ./docker_path_fix.sh${NC}"
-        echo "  2. ${GREEN}source ~/.zshrc${NC}"
-        echo "  3. Run this script again"
-        echo ""
-        read -p "Would you like to continue anyway? (y/n) " -n 1 -r
-        echo ""
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            exit 1
-        fi
-    fi
-    
     print_header "Comprehensive Dotfiles Installation Verification"
     echo "This script will check all components of your dotfiles installation"
     
