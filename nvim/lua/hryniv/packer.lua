@@ -15,10 +15,10 @@ return require('packer').startup(function(use)
 
   -- Color scheme
   use ({
-      'rose-pine/neovim',
-      as = 'rose-pine',
+      'vague2k/vague.nvim',
+      as = 'vague',
       config = function()
-          vim.cmd('colorscheme rose-pine')
+          vim.cmd('colorscheme vague')
       end
   })
 
