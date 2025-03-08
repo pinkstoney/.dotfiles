@@ -103,7 +103,20 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-alias ls='colorls'
-eval $(thefuck --alias)
 
-eval "$(zoxide init zsh)"
+# Use colorls if available, otherwise use regular ls
+if command -v colorls > /dev/null; then
+    alias ls='colorls'
+fi
+
+# Initialize thefuck if available
+if command -v thefuck > /dev/null; then
+    eval $(thefuck --alias)
+fi
+
+# Initialize zoxide if available
+if command -v zoxide > /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
+# Docker-specific PATH additions
+export PATH="$PATH:/home/testuser/.local/bin:/home/testuser/bin:/home/testuser/.local/share/gem/ruby/3.0.0/bin"
